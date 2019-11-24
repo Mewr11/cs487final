@@ -1,5 +1,5 @@
 /**
- * CS487 Prototype
+ * This js file is for back-end things, like our internal representations of courses, events, etc.
  */
 
 class course {
