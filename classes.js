@@ -3,8 +3,9 @@
  */
 
 class course {
-  constructor(name, time) {
+  constructor(name, desc, time) {
     this.name = name;
+    this.desc = desc;
     this.days = [0, 0, 0, 0, 0, 0, 0];
     this.time = time;
     this.events = [];

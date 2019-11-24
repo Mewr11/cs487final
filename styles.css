@@ -1,1 +1,9 @@
 /* Pretty stuff goes here. */
+
+* {
+  font-family: 'Ubuntu', sans-serif;
+}
+
+p {
+  font-family: 'Georgia', serif;
+}
