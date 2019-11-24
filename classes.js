@@ -2,7 +2,11 @@
  * This js file is for back-end things, like our internal representations of courses, events, etc.
  */
 
-class course {
+class Course {
+  // Public fields
+  name;
+  desc;
+
   constructor(name, desc, time) {
     this.name = name;
     this.desc = desc;
@@ -43,7 +47,7 @@ class course {
   }
 }
 
-class event {
+class Event {
   constructor(name, date, time, note, parent) {
     this.name = name;
     this.data = date;
@@ -53,7 +57,7 @@ class event {
   }
 }
 
-class source {
+class Source {
   constructor(name, path, type, parent) {
     this.name = name;
     // TODO: Copy file from path to correct location

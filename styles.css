@@ -7,3 +7,11 @@
 p {
   font-family: 'Georgia', serif;
 }
+
+#menu {
+  background-color: #eef; /* Dev color */
+}
+
+#view {
+  background-color: #fee; /* Dev color */
+}
