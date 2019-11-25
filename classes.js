@@ -26,7 +26,7 @@ class Course {
  */
   addEvent(e) {
     this.events.push(e);
-    for (const f in addEventCallbacks) {
+    for (const f of this.addEventCallbacks) {
       f(e);
     }
     return this.events.length;
@@ -40,11 +40,37 @@ class Course {
   removeEvent(i) {
     [this.events[i], this.events[0]] = [this.events[0], this.events[i]];
     e = this.events.shift();
-    for (const f in removeEventCallbacks) {
+    for (const f of this.removeEventCallbacks) {
       f(e);
     }
     return e;
   }
+
+  /**
+   * Add the source s to the list of events, then returns the total number of events
+   * @param {[type]} s [description]
+   */
+    addSource(s) {
+      this.sources.push(s);
+      for (const f of this.addSourceCallbacks) {
+        f(s);
+      }
+      return this.sources.length;
+    }
+
+  /**
+   * Remove the source at index i and returns it
+   * @param  {[type]} i [description]
+   * @return {[type]}   [description]
+   */
+    removeSource(i) {
+      [this.sources[i], this.sources[0]] = [this.sources[0], this.sources[i]];
+      s = this.sources.shift();
+      for (const f of this.removeSourceCallbacks) {
+        f(s);
+      }
+      return s;
+    }
 }
 
 class Event {
@@ -60,7 +86,7 @@ class Event {
 class Source {
   constructor(name, path, type, parent) {
     this.name = name;
-    // TODO: Copy file from path to correct location
+    // TODO: Copy file from path to correct location -- LOW priority (will not be seen in demo)
     this.path = path;
     this.type = type;
     this.parent = parent;

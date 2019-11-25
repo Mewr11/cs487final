@@ -9,6 +9,8 @@ var viewDiv;
 var courseWizardTab;
 var courseWizardDiv;
 var activeCourse;
+var eventWizardDiv;
+var sourceWizardDiv;
 
 // Function to be called whenever the page is loaded.
 onLoad = function() {
@@ -23,9 +25,10 @@ onLoad = function() {
   viewDiv = document.getElementById('view');
   courseWizardTab = document.getElementById('addcourse');
   courseWizardDiv = document.getElementById('coursewizard');
+  eventWizardDiv = document.getElementById('eventwizard');
+  sourceWizardDiv = document.getElementById('sourcewizard');
 
-  for(var i in courseList) {
-    var course = courseList[i];
+  for(const course of courseList) {
     var pane = generateCoursePane(course);
     pane.style.display = 'none';
     course.pane = pane;
@@ -105,11 +108,13 @@ generateCoursePane = function(course) {
     eventnotifier.appendChild(dctn('You do not appear to have any events for this course'));
     eventcontainer.appendChild(eventnotifier);
   } else {
-    // TODO: Add event tabs
+    // TODO: Add event tabs -- LOW priority (Will not see during demo)
   }
   var addevent = dce('h3');
   addevent.appendChild(dctn('Add an Event'));
   addevent.onclick = () => {
+    activeCourse = course;
+    eventWizardDiv.style.display = 'block';
     // TODO: Add Event Wizard
   }
   var sourceheader = dce('h2');
@@ -121,11 +126,13 @@ generateCoursePane = function(course) {
     sourcenotifier.appendChild(dctn('You do not appear to have any sources for this course'));
     sourcecontainer.appendChild(sourcenotifier);
   } else {
-    // TODO: Add source tabs
+    // TODO: Add source tabs -- LOW priority (Will not see during demo)
   }
   var addsource = dce('h3');
   addsource.appendChild(dctn('Add a Source'));
   addsource.onclick = () => {
+    activeCourse = course;
+    sourceWizardDiv.style.display = 'block';
     // TOOD: Add Source Wizard
   }
   pane.appendChild(name);
@@ -181,4 +188,22 @@ submitCourseWizard = function() {
   course.tab = tab;
   menuDiv.appendChild(tab);
   form.reset();
+}
+
+// Create new event
+submitEventWizard = function() {
+  var form = document.forms["eventWizard"];
+  event = new Event(form["name"].value, form["date"].value, form["time"].value, form["note"].value, activeCourse);
+  activeCourse.addEvent(event);
+  form.reset();
+  eventWizardDiv.style.display = 'none';
+}
+
+// Create new source
+submitSourceWizard = function() {
+  var form = document.forms["sourceWizard"];
+  source = new Source(form["name"].value, form["path"].value, form["type"], activeCourse);
+  activeCourse.addSource(source);
+  form.reset();
+  sourceWizardDiv.style.display = 'none';
 }

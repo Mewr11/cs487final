@@ -6,13 +6,12 @@ Final project (prototype) for team A
 - Add 'delete course' button
 
 ## Events
-- Make event wizard scripts
 - Make event info panels
 
 ## Sources
-- Make source wizard scripts
 - Make source iFrame
 
 ## GUI
 - Better colors
 - Settings panel
+- 'x' to get out of event/source wizards and source iframe
