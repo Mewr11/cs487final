@@ -14,7 +14,7 @@ p {
 }
 
 #menu {
-  background-color: #eef; /* Dev color */
+  background-color: #ddf; /* Dev color */
   float: left;
   width: 20%;
   margin: 1%;
@@ -25,4 +25,14 @@ p {
   float: left;
   width: 76%;
   margin: 1%;
+}
+
+.menubutton {
+  width: 96%;
+  margin: 2%;
+  background-color: #cce;
+}
+
+.daycheckbox {
+  float: left;
 }

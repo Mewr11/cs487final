@@ -10,9 +10,33 @@
   <body onload="onLoad()">
     <div id="page">
       <div id="menu">
+        <div class="menubutton" id="addcourse">
+          <h1>+</h1>
+        </div>
       </div>
       <div id="view">
-        <p>Here goes the info the user is currently looking at (Course info, course creation wizard, etc.)</p>
+        <div id="coursewizard">
+          <form method="post" onsubmit="alert('hi');">
+            <h1>Add a Course</h1>
+            <h2>Course Title</h2>
+            <input type="text" name="title" required>
+            <h2>Course Description</h2>
+            <input type="text" name="desc" required>
+            <h2>Course Time</h2>
+            <input type="time" name="time" required>
+            <h2>Meeting Days</h2>
+            <p>S&nbsp;&nbsp;&nbsp;M&nbsp;&nbsp;&nbsp;T&nbsp;&nbsp;&nbsp;W&nbsp;&nbsp;&nbsp;T&nbsp;&nbsp;&nbsp;F&nbsp;&nbsp;&nbsp;S</p>
+            <input type="checkbox" name="sun">
+            <input type="checkbox" name="mon" class="daycheckbox">
+            <input type="checkbox" name="tue" class="daycheckbox">
+            <input type="checkbox" name="wed" class="daycheckbox">
+            <input type="checkbox" name="thu" class="daycheckbox">
+            <input type="checkbox" name="fri" class="daycheckbox">
+            <input type="checkbox" name="sat" class="daycheckbox">
+            <br>
+            <input type="submit" value="Submit">
+          </form>
+        </div>
       </div>
     </div>
   </body>

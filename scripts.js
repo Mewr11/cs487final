@@ -26,6 +26,7 @@ onLoad = function() {
     viewDiv.appendChild(pane);
     var tab = generateCourseTab(course);
     menuDiv.appendChild(tab);
+    course.tab = tab;
   }
 }
 
@@ -44,15 +45,16 @@ generateCoursePane = function(course) {
 
 // Creates a tab for the menu for a course.
 generateCourseTab = function(course) {
-var tab = document.createElement('div');
-tab.onclick = () => {
-  for (let i = 0; i < viewDiv.children.length; i++) {
-    viewDiv.children[i].style.display = 'none';
+  var tab = document.createElement('div');
+  tab.onclick = () => {
+    for (let i = 0; i < viewDiv.children.length; i++) {
+      viewDiv.children[i].style.display = 'none';
+    }
+    course.pane.style.display = 'block';
   }
-  course.pane.style.display = 'block';
-}
-var title = document.createElement('h1');
-title.appendChild(document.createTextNode(course.name));
-tab.appendChild(title);
-return tab;
+  var title = document.createElement('h1');
+  title.appendChild(document.createTextNode(course.name));
+  tab.appendChild(title);
+  tab.classList.add("menubutton");
+  return tab;
 }
