@@ -64,6 +64,14 @@ p {
   background-color: #ccc;
 }
 
+#x {
+  position: fixed;
+  top: 16%;
+  right: 17%;
+  background-color: #caa;
+  border-radius: 3px;
+}
+
 .dayboxon {
   background-color: #444;
   color: #ddd;

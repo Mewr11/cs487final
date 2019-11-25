@@ -14,4 +14,3 @@ Final project (prototype) for team A
 ## GUI
 - Better colors
 - Settings panel
-- 'x' to get out of event/source wizards and source iframe

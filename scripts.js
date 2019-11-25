@@ -11,6 +11,8 @@ var courseWizardDiv;
 var activeCourse;
 var eventWizardDiv;
 var sourceWizardDiv;
+var sourceFrame;
+var exiter;
 
 // Function to be called whenever the page is loaded.
 onLoad = function() {
@@ -27,6 +29,9 @@ onLoad = function() {
   courseWizardDiv = document.getElementById('coursewizard');
   eventWizardDiv = document.getElementById('eventwizard');
   sourceWizardDiv = document.getElementById('sourcewizard');
+  sourceFrame = document.getElementById('sourceframe');
+  exiter = document.getElementById('x');
+  exiter.style.display = 'none';
 
   for(const course of courseList) {
     var pane = generateCoursePane(course);
@@ -115,7 +120,7 @@ generateCoursePane = function(course) {
   addevent.onclick = () => {
     activeCourse = course;
     eventWizardDiv.style.display = 'block';
-    // TODO: Add Event Wizard
+    exiter.style.display = 'block';
   }
   var sourceheader = dce('h2');
   sourceheader.appendChild(dctn('Sources'));
@@ -133,7 +138,7 @@ generateCoursePane = function(course) {
   addsource.onclick = () => {
     activeCourse = course;
     sourceWizardDiv.style.display = 'block';
-    // TOOD: Add Source Wizard
+    exiter.style.display = 'block';
   }
   pane.appendChild(name);
   pane.appendChild(desc);
@@ -206,4 +211,14 @@ submitSourceWizard = function() {
   activeCourse.addSource(source);
   form.reset();
   sourceWizardDiv.style.display = 'none';
+}
+
+// Exit out of all wizards
+exitWizards = function() {
+  document.forms["eventWizard"].reset();
+  document.forms["sourceWizard"].reset();
+  eventWizardDiv.style.display = 'none';
+  sourceWizardDiv.style.display = 'none';
+  sourceFrame.style.display = 'none';
+  exiter.style.display = 'none';
 }
