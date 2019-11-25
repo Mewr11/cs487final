@@ -7,10 +7,10 @@ class Course {
   name;
   desc;
 
-  constructor(name, desc, time) {
+  constructor(name, desc, time, days) {
     this.name = name;
     this.desc = desc;
-    this.days = [0, 0, 0, 0, 0, 0, 0];
+    this.days = days;
     this.time = time;
     this.events = [];
     this.sources = [];

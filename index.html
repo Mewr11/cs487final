@@ -16,28 +16,29 @@
       </div>
       <div id="view">
         <div id="coursewizard">
-          <form method="post" onsubmit="alert('hi');">
+          <form method="post" onsubmit="submitCourseWizard();" name="courseWizard" target="trickery">
             <h1>Add a Course</h1>
             <h2>Course Title</h2>
-            <input type="text" name="title" required>
+            <input type="text" name="name" required>
             <h2>Course Description</h2>
             <input type="text" name="desc" required>
             <h2>Course Time</h2>
             <input type="time" name="time" required>
             <h2>Meeting Days</h2>
             <p>S&nbsp;&nbsp;&nbsp;M&nbsp;&nbsp;&nbsp;T&nbsp;&nbsp;&nbsp;W&nbsp;&nbsp;&nbsp;T&nbsp;&nbsp;&nbsp;F&nbsp;&nbsp;&nbsp;S</p>
-            <input type="checkbox" name="sun">
+            <input type="checkbox" name="sun" class="daycheckbox">
             <input type="checkbox" name="mon" class="daycheckbox">
             <input type="checkbox" name="tue" class="daycheckbox">
             <input type="checkbox" name="wed" class="daycheckbox">
             <input type="checkbox" name="thu" class="daycheckbox">
             <input type="checkbox" name="fri" class="daycheckbox">
             <input type="checkbox" name="sat" class="daycheckbox">
-            <br>
+            <p>&nbsp;</p> <!-- Alignment -->
             <input type="submit" value="Submit">
           </form>
         </div>
       </div>
+      <iframe name="trickery" style="display: none;"></iframe>
     </div>
   </body>
 </html>

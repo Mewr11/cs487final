@@ -6,17 +6,21 @@
 var courseList;
 var menuDiv;
 var viewDiv;
+var courseWizardTab;
+var courseWizardDiv;
 
 // Function to be called whenever the page is loaded.
 onLoad = function() {
   if(/*See below; will be `if(information to load)`*/false) {
     // TODO: Open saved information, if it exists
   } else {
-    courseList = [new Course("CS487", "Software Engineering", "11:25"), new Course("CS100", "Intro to the Profession", "3:15")];
+    courseList = [new Course("CS487", "Software Engineering", "11:25", [false, false, true, false, true, false, false]), new Course("CS100", "Intro to the Profession", "3:15", false, true, false, true, false, false, false)];
   }
 
   menuDiv = document.getElementById('menu');
   viewDiv = document.getElementById('view');
+  courseWizardTab = document.getElementById('addcourse');
+  courseWizardDiv = document.getElementById('coursewizard');
 
   for(var i in courseList) {
     var course = courseList[i];
@@ -27,6 +31,13 @@ onLoad = function() {
     var tab = generateCourseTab(course);
     menuDiv.appendChild(tab);
     course.tab = tab;
+  }
+
+  courseWizardTab.onclick = () => {
+    for (let i = 0; i < viewDiv.children.length; i++) {
+      viewDiv.children[i].style.display = 'none';
+    }
+    courseWizardDiv.style.display = 'block';
   }
 }
 
@@ -57,4 +68,20 @@ generateCourseTab = function(course) {
   tab.appendChild(title);
   tab.classList.add("menubutton");
   return tab;
+}
+
+// Create new course data
+submitCourseWizard = function() {
+  var form = document.forms["courseWizard"];
+  var days = [form["sun"].checked, form["mon"].checked, form["tue"].checked, form["wed"].checked, form["thu"].checked, form["fri"].checked, form["sat"].checked];
+  course = new Course(form["name"].value, form["desc"].value, form["time"].value, days);
+  courseList.push(course);
+  var pane = generateCoursePane(course);
+  pane.style.display = 'none';
+  course.pane = pane;
+  viewDiv.appendChild(pane);
+  var tab = generateCourseTab(course);
+  course.tab = tab;
+  menuDiv.appendChild(tab);
+  form.reset();
 }

@@ -22,7 +22,7 @@ p {
 
 #view {
   background-color: #fee; /* Dev color */
-  float: left;
+  float: right;
   width: 76%;
   margin: 1%;
 }
