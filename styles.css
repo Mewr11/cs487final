@@ -63,3 +63,31 @@ p {
   height: 64%;
   background-color: #ccc;
 }
+
+.dayboxon {
+  background-color: #444;
+  color: #ddd;
+  border-color: black;
+  border-width: 1px;
+  border-style: inset;
+  float: left;
+  width: 2em;
+  height: 2em;
+  text-align: center;
+}
+
+.dayboxoff {
+  background-color: #ddd;
+  color: #444;
+  border-color: black;
+  border-width: 1px;
+  border-style: inset;
+  float: left;
+  width: 2em;
+  height: 2em;
+  text-align: center;
+}
+
+.dayboxbounding {
+  height: 2.5em;
+}

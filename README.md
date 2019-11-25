@@ -3,7 +3,6 @@ Final project (prototype) for team A
 
 # Roadmap
 ## Courses
-- Finish course info panel
 - Add 'delete course' button
 
 ## Events
