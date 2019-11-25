@@ -61,7 +61,7 @@ class Source {
   constructor(name, path, type, parent) {
     this.name = name;
     // TODO: Copy file from path to correct location
-    path;
+    this.path = path;
     this.type = type;
     this.parent = parent;
   }

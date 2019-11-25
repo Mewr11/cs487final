@@ -46,10 +46,19 @@ generateCoursePane = function(course) {
   var pane = document.createElement('div');
   var name = document.createElement('h1');
   var desc = document.createElement('p');
+  var timeheader = document.createElement('h2');
+  var time = document.createElement('p');
+  var daysheader = document.createElement('h2');
   name.appendChild(document.createTextNode(course.name));
   desc.appendChild(document.createTextNode(course.desc));
+  timeheader.appendChild(document.createTextNode('Time:'));
+  time.appendChild(document.createTextNode(course.time));
+  daysheader.appendChild(document.createTextNode('Schedule:'));
   pane.appendChild(name);
   pane.appendChild(desc);
+  pane.appendChild(timeheader);
+  pane.appendChild(time);
+  pane.appendChild(daysheader);
   return pane;
   // TODO: Finish pane implementation (linked sources, linked events, timeslot, dates, etc.)
 }

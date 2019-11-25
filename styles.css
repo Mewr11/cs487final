@@ -31,8 +31,35 @@ p {
   width: 96%;
   margin: 2%;
   background-color: #cce;
+  text-align: center;
 }
 
 .daycheckbox {
   float: left;
+}
+
+#sourceframe {
+  position: fixed;
+  bottom: 18%;
+  right: 18%;
+  width: 64%;
+  height: 64%;
+}
+
+#eventwizard {
+  position: fixed;
+  bottom: 18%;
+  right: 18%;
+  width: 64%;
+  height: 64%;
+  background-color: #ecf;
+}
+
+#sourcewizard {
+  position: fixed;
+  bottom: 18%;
+  right: 18%;
+  width: 64%;
+  height: 64%;
+  background-color: #ccc;
 }

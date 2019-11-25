@@ -7,11 +7,11 @@ Final project (prototype) for team A
 - Add 'delete course' button
 
 ## Events
-- Make event wizard
+- Make event wizard scripts
 - Make event info panels
 
 ## Sources
-- Make source wizard
+- Make source wizard scripts
 - Make source iFrame
 
 ## GUI
