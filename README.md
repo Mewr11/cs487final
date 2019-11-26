@@ -5,9 +5,6 @@ Final project (prototype) for team A
 ## Courses
 - Add 'delete course' button
 
-## Sources
-- Make source iFrame
-
 ## GUI
 - Better colors
 - Settings panel

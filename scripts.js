@@ -44,6 +44,7 @@ onLoad = function() {
     menuDiv.appendChild(tab);
     course.tab = tab;
     course.addEventCallbacks.push(registerNewEvent);
+    course.addSourceCallbacks.push(registerNewSource);
   }
 
   courseWizardTab.onclick = () => {
@@ -232,7 +233,23 @@ generateEventTab = function(e) {
 generateSourceTab = function(source) {
   var dce = document.createElement.bind(document);
   var dctn = document.createTextNode.bind(document);
-
+  var tab = dce('div');
+  tab.classList.add("sourcetab");
+  var title = dce('h1');
+  title.appendChild(dctn(source.name));
+  tab.appendChild(title);
+  if(source.type == "url") {
+    tab.onclick = () => {
+      window.open(source.path, '_blank');
+    }
+  } else {
+    tab.onclick = () => {
+      sourceFrame.src = source.path;
+      sourceFrame.style.display = 'block';
+      exiter.style.display = 'block';
+    }
+  }
+  return tab;
 }
 
 // Create new course data
@@ -248,6 +265,7 @@ submitCourseWizard = function() {
   var tab = generateCourseTab(course);
   course.tab = tab;
   course.addEventCallbacks.push(registerNewEvent);
+  course.addSourceCallbacks.push(registerNewSource);
   menuDiv.appendChild(tab);
   form.reset();
 }
@@ -289,11 +307,21 @@ registerNewEvent = function(e) {
   e.pane = pane;
   var tab = generateEventTab(e);
   e.tab = tab;
-  ec = e.parent.pane.children[14] // event container
+  ec = e.parent.pane.children[14]; // event container
   if(e.parent.events.length == 1) {
     ec.removeChild(ec.children[0]);
   }
   ec.appendChild(tab);
   pane.style.display = 'none';
   document.getElementById('page').appendChild(pane);
+}
+
+registerNewSource = function(s) {
+  var tab = generateSourceTab(s);
+  s.tab = tab;
+  sc = s.parent.pane.children[17];
+  if(s.parent.sources.length == 1) {
+    sc.removeChild(sc.children[0]);
+  }
+  sc.appendChild(tab);
 }
