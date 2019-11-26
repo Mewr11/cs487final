@@ -239,6 +239,9 @@ generateSourceTab = function(source) {
   title.appendChild(dctn(source.name));
   tab.appendChild(title);
   if(source.type == "url") {
+    if(!/^http/.test(source.path)) {
+      source.path = "http://" + source.path;
+    }
     tab.onclick = () => {
       window.open(source.path, '_blank');
     }
@@ -283,7 +286,7 @@ submitEventWizard = function() {
 // Create new source
 submitSourceWizard = function() {
   var form = document.forms["sourceWizard"];
-  source = new Source(form["name"].value, form["path"].value, form["type"], activeCourse);
+  source = new Source(form["name"].value, form["path"].value, form["type"].value, activeCourse);
   activeCourse.addSource(source);
   form.reset();
   sourceWizardDiv.style.display = 'none';
