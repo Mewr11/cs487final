@@ -5,9 +5,6 @@ Final project (prototype) for team A
 ## Courses
 - Add 'delete course' button
 
-## Events
-- Make event info panels
-
 ## Sources
 - Make source iFrame
 

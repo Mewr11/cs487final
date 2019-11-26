@@ -76,7 +76,7 @@ class Course {
 class Event {
   constructor(name, date, time, note, parent) {
     this.name = name;
-    this.data = date;
+    this.date = date;
     this.time = time;
     this.note = note;
     this.parent = parent;

@@ -12,6 +12,7 @@ var activeCourse;
 var eventWizardDiv;
 var sourceWizardDiv;
 var sourceFrame;
+var activeEventDiv;
 var exiter;
 
 // Function to be called whenever the page is loaded.
@@ -32,6 +33,7 @@ onLoad = function() {
   sourceFrame = document.getElementById('sourceframe');
   exiter = document.getElementById('x');
   exiter.style.display = 'none';
+  activeEvent = sourceFrame;
 
   for(const course of courseList) {
     var pane = generateCoursePane(course);
@@ -41,6 +43,7 @@ onLoad = function() {
     var tab = generateCourseTab(course);
     menuDiv.appendChild(tab);
     course.tab = tab;
+    course.addEventCallbacks.push(registerNewEvent);
   }
 
   courseWizardTab.onclick = () => {
@@ -91,7 +94,7 @@ generateCoursePane = function(course) {
   monlabel.appendChild(dctn('M'))
   tuelabel.appendChild(dctn('T'))
   wedlabel.appendChild(dctn('W'))
-  thulabel.appendChild(dctn('T'))
+  thulabel.appendChild(dctn('R'))
   frilabel.appendChild(dctn('F'))
   satlabel.appendChild(dctn('S'))
   sun.appendChild(sunlabel);
@@ -160,23 +163,76 @@ generateCoursePane = function(course) {
   pane.appendChild(sourcecontainer);
   pane.appendChild(addsource);
   return pane;
-  // TODO: Finish pane implementation (linked sources, linked events, timeslot, dates, etc.)
 }
 
 // Creates a tab for the menu for a course.
 generateCourseTab = function(course) {
-  var tab = document.createElement('div');
+  var dce = document.createElement.bind(document);
+  var dctn = document.createTextNode.bind(document);
+  var tab = dce('div');
   tab.onclick = () => {
     for (let i = 0; i < viewDiv.children.length; i++) {
       viewDiv.children[i].style.display = 'none';
     }
     course.pane.style.display = 'block';
   }
-  var title = document.createElement('h1');
-  title.appendChild(document.createTextNode(course.name));
+  var title = dce('h1');
+  title.appendChild(dctn(course.name));
   tab.appendChild(title);
   tab.classList.add("menubutton");
   return tab;
+}
+
+// Creates an info pane for an event
+generateEventPane = function(e) {
+    var dce = document.createElement.bind(document);
+    var dctn = document.createTextNode.bind(document);
+    var pane = dce('div');
+    pane.classList.add("eventpane");
+    var header = dce('h1');
+    header.appendChild(dctn(e.name));
+    var dateheader = dce('h2');
+    dateheader.appendChild(dctn('Date'));
+    var date = dce('p');
+    date.appendChild(dctn(e.date));
+    var timeheader = dce('h2');
+    timeheader.appendChild(dctn('Time'));
+    var time = dce('p');
+    time.appendChild(dctn(e.time));
+    var note = dce('p');
+    note.appendChild(dctn(e.note));
+
+    pane.appendChild(header);
+    pane.appendChild(dateheader);
+    pane.appendChild(date);
+    pane.appendChild(timeheader);
+    pane.appendChild(time);
+    pane.appendChild(note);
+    return pane;
+}
+
+// Creates a tab for an event
+generateEventTab = function(e) {
+  var dce = document.createElement.bind(document);
+  var dctn = document.createTextNode.bind(document);
+  var tab = dce('div');
+  tab.classList.add("eventtab");
+  var title = dce('h1');
+  title.appendChild(dctn(e.name));
+  tab.appendChild(title);
+  tab.onclick = () => {
+    activeEvent = e.pane;
+    activeEvent.style.display = 'block';
+    exiter.style.display = 'block';
+  }
+  return tab;
+}
+
+// Creates a tab for a source
+generateSourceTab = function(source) {
+  var dce = document.createElement.bind(document);
+  var dctn = document.createTextNode.bind(document);
+
 }
 
 // Create new course data
@@ -191,6 +247,7 @@ submitCourseWizard = function() {
   viewDiv.appendChild(pane);
   var tab = generateCourseTab(course);
   course.tab = tab;
+  course.addEventCallbacks.push(registerNewEvent);
   menuDiv.appendChild(tab);
   form.reset();
 }
@@ -202,6 +259,7 @@ submitEventWizard = function() {
   activeCourse.addEvent(event);
   form.reset();
   eventWizardDiv.style.display = 'none';
+  exiter.style.display = 'none';
 }
 
 // Create new source
@@ -211,6 +269,7 @@ submitSourceWizard = function() {
   activeCourse.addSource(source);
   form.reset();
   sourceWizardDiv.style.display = 'none';
+  exiter.style.display = 'none';
 }
 
 // Exit out of all wizards
@@ -220,5 +279,21 @@ exitWizards = function() {
   eventWizardDiv.style.display = 'none';
   sourceWizardDiv.style.display = 'none';
   sourceFrame.style.display = 'none';
+  sourceFrame.src = '';
   exiter.style.display = 'none';
+  activeEvent.style.display = 'none';
+}
+
+registerNewEvent = function(e) {
+  var pane = generateEventPane(e);
+  e.pane = pane;
+  var tab = generateEventTab(e);
+  e.tab = tab;
+  ec = e.parent.pane.children[14] // event container
+  if(e.parent.events.length == 1) {
+    ec.removeChild(ec.children[0]);
+  }
+  ec.appendChild(tab);
+  pane.style.display = 'none';
+  document.getElementById('page').appendChild(pane);
 }

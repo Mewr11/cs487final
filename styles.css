@@ -64,6 +64,15 @@ p {
   background-color: #ccc;
 }
 
+.eventpane {
+  position: fixed;
+  bottom: 18%;
+  right: 18%;
+  width: 64%;
+  height: 64%;
+  background-color: #ace;
+}
+
 #x {
   position: fixed;
   top: 16%;
